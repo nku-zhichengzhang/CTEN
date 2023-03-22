@@ -43,7 +43,7 @@ If you find this repo useful in your project or research, please consider citing
 ````
 @inproceedings{Zhang_CVPR_2023,
   title={Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network},
-  author={Zhang, Zhicheng, Wang,Lijuan and Yang, Jufeng},
+  author={Zhang, Zhicheng, Wang, Lijuan and Yang, Jufeng},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
   year={2023}
 }
