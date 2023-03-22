@@ -16,6 +16,7 @@ This is the official implementation of our **CVPR 2023** paper.
 ## Publication
 
 **Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network**
+
 <i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2023</i>.
 </br>
 [[Paper]](https://arxiv.org/abs/1911.08862) </br>
