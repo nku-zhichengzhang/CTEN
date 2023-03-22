@@ -39,6 +39,7 @@ def val_epoch(epoch, data_loader, model, criterion, opt, writer, optimizer):
         accuracies2.update(acc2, batch_size)
         batch_time.update(time.time() - end_time)
         end_time = time.time()
+    Acc = max(accuracies.avg,accuracies1.avg,accuracies2.avg)
     writer.add_scalar('val/loss', losses.avg, epoch)
     writer.add_scalar('val/acc', accuracies.avg, epoch)
     print("Val loss: {:.4f}".format(losses.avg))
@@ -52,4 +53,4 @@ def val_epoch(epoch, data_loader, model, criterion, opt, writer, optimizer):
         'optimizer': optimizer.state_dict(),
     }
     torch.save(states, save_file_path)
-    return max(acc,acc1,acc2)
+    return Acc
