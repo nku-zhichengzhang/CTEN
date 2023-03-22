@@ -112,7 +112,7 @@ def parse_opts():
             ),
             dict(
                 name='--n_epochs',
-                default=400,
+                default=100,
                 type=int,
                 help='Number of total epochs to run',
             )
