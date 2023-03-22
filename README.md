@@ -1,6 +1,6 @@
 <div align="center">
 
-# Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network
+# Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network [CVPR2023]
 
 
 <i>Zhicheng Zhang, Lijuan Wang, and Jufeng Yang</i>
@@ -11,17 +11,21 @@
 
 </div>
 
-This is the official implementation of our **CVPR 2023** paper. [[PDF]]()
+This is the official implementation of our **CVPR 2023** paper.
 
-## Summary of this work
+## Publication
+
+**Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network**
+<i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2023</i>.
+</br>
+[[Paper]](https://arxiv.org/abs/1911.08862) </br>
+
+
+
+## Abstract
 
 <img src="./assests/motivation_video3-1.png" width="50%" align="right">
 Automatically predicting the emotions of user-generated videos (UGVs) receives increasing interest recently. However, existing methods mainly focus on a few key visual frames, which may limit their capacity to encode the context that depicts the intended emotions. To tackle that, in this paper, we propose a cross-modal temporal erasing network that locates not only keyframes but also context and audio-related information in a weakly-supervised manner. In specific, we first leverage the intra- and inter-modal relationship among different segments to accurately select keyframes. Then, we iteratively erase keyframes to encourage the model to concentrate on the contexts that include complementary information. Extensive experiments on three challenging benchmark datasets demonstrate that the proposed method performs favorably against the state-of-the-art approaches.
-
-
-
- 
-
 
 
 ## Running
@@ -36,10 +40,16 @@ $ bash run.sh
 
 The used datasets are provided in our [homepage](https://cv.nankai.edu.cn/).
 
-## Citation
 
+
+## References
+
+We referenced the repo of [VAANet](https://github.com/maysonma/VAANet) for the code.
+
+## Citation
 If you find this repo useful in your project or research, please consider citing the relevant publication.
 
+**Bibtex Citation**
 ````
 @inproceedings{Zhang_CVPR_2023,
   title={Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network},
