@@ -1,5 +1,5 @@
 from opts import parse_opts
-from core.model import generate_model,generate_visual_model
+from core.model import generate_model,generate_visual_Erase_model
 from core.loss import get_loss
 from core.optimizer import get_optim
 from core.utils import local2global_path, get_spatial_transform
@@ -15,7 +15,7 @@ def main():
     opt = parse_opts()
     opt.device_ids = list(range(device_count()))
     local2global_path(opt)
-    model, parameters = generate_visual_model(opt)
+    model, parameters = generate_visual_Erase_model(opt)
     criterion = get_loss(opt)
     criterion = criterion.cuda()
     optimizer = get_optim(opt, parameters)
