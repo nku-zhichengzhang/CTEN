@@ -41,7 +41,7 @@ The used datasets are provided in our [homepage](https://cv.nankai.edu.cn/).
 If you find this repo useful in your project or research, please consider citing the relevant publication.
 
 ````
-@inproceedings{zhang2023ECL,
+@inproceedings{Zhang_CVPR_2023,
   title={Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network},
   author={Zhang, Zhicheng, Wang,Lijuan and Yang, Jufeng},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
