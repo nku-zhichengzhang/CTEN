@@ -19,7 +19,7 @@ def parse_opts():
                  type=str,
                  help='Global path of root directory'),
             dict(name="--video_path",
-                 default="/home/ubuntu11/zzc/data/senti/VAA_VideoEmotion8/imgs",
+                 default="",
                  type=str,
                  help='Local path of videos', ),
             dict(name="--annotation_path",
