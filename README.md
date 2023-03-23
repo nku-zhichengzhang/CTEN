@@ -38,7 +38,7 @@ You can adjust more details such as epoch, batch size, etc. Please refer to [`op
 $ bash run.sh
 ~~~~
 
-The used datasets are provided in our [homepage](https://cv.nankai.edu.cn/).
+The used datasets are provided in [Ekman-6](https://github.com/kittenish/Frame-Transformer-Network), [VideoEmotion-8](https://drive.google.com/drive/folders/0B5peJ1MHnIWGd3pFbzMyTG5BSGs?resourcekey=0-hZ1jo5t1hIauRpYhYIvWYA), and [CAER](https://caer-dataset.github.io/).
 
 
 
