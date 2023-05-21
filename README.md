@@ -18,7 +18,7 @@ This is the official implementation of our **CVPR 2023** paper.
 **Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network**<br>
 <i>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) 2023</i>.
 </br>
-[[Paper]]() </br>
+[[Paper]](https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_Weakly_Supervised_Video_Emotion_Detection_and_Prediction_via_Cross-Modal_Temporal_CVPR_2023_paper.pdf) </br>
 
 
 
@@ -51,10 +51,12 @@ If you find this repo useful in your project or research, please consider citing
 
 **Bibtex Citation**
 ````
-@inproceedings{Zhang_CVPR_2023,
-  title={Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network},
-  author={Zhang, Zhicheng, Wang, Lijuan and Yang, Jufeng},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2023}
+@InProceedings{Zhang_2023_CVPR,
+    author    = {Zhang, Zhicheng and Wang, Lijuan and Yang, Jufeng},
+    title     = {Weakly Supervised Video Emotion Detection and Prediction via Cross-Modal Temporal Erasing Network},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {18888-18897}
 }
 ````
