@@ -112,7 +112,7 @@ class VisualErase(nn.Module):
             nn.init.kaiming_normal_(m.weight, mode='fan_out')
 
     def _init_nonlocal(self):
-        self.nl=nn.Sequential(NonLocalBlock())#,NonLocalBlock(),NonLocalBlock())
+        self.nl=nn.Sequential(NonLocalBlock())
 
 
     def forward(self, input: torch.Tensor):

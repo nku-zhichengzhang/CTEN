@@ -1,8 +1,7 @@
 import torch.nn as nn
 from models.vaanet import VAANet
 from models.visual_stream import VisualStream
-#from models.visual_stream_gyc import VisualStream as VisualErase
-from models.visual_erase_gyc import VisualErase
+from models.visual_stream_w_Erase import VisualErase
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
 
@@ -32,7 +31,7 @@ def generate_visual_model(opt):
     return model,model.parameters()
 
 def generate_visual_Erase_model(opt):
-    model=visual_stream_w_Erase(
+    model=VisualErase(
         snippet_duration=opt.snippet_duration,
         sample_size=opt.sample_size,
         n_classes=opt.n_classes,
