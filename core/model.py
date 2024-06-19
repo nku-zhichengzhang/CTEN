@@ -1,5 +1,6 @@
 import torch.nn as nn
 from models.vaanet import VAANet
+from models.vaanet_erase import VAANetErase
 from models.visual_stream import VisualStream
 from models.visual_stream_w_Erase import VisualErase
 import os
@@ -15,6 +16,20 @@ def generate_model(opt):
         audio_n_segments=opt.audio_n_segments,
         pretrained_resnet101_path=opt.resnet101_pretrained,
     )
+    model = model.cuda()
+    return model, model.parameters()
+
+def generate_vaaerase_model(opt):
+    model = VAANetErase(
+        snippet_duration=opt.snippet_duration,
+        sample_size=opt.sample_size,
+        n_classes=opt.n_classes,
+        seq_len=opt.seq_len,
+        audio_embed_size=opt.audio_embed_size,
+        audio_n_segments=opt.audio_n_segments,
+        pretrained_resnet101_path=opt.resnet101_pretrained,
+    )
+    model = nn.DataParallel(model)
     model = model.cuda()
     return model, model.parameters()
 

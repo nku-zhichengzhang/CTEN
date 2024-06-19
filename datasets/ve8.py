@@ -4,12 +4,13 @@ import torch.utils.data as data
 from torchvision import get_image_backend
 
 from PIL import Image
-
+import random
 import json
 import os
 import functools
-import librosa
+# import librosa
 import numpy as np
+import torchaudio
 
 def load_value_file(file_path):
     with open(file_path, 'r') as input_file:
@@ -61,7 +62,7 @@ def video_loader(video_dir_path, frame_indices, image_loader):
     video = []
     for i in frame_indices:
         image_path = os.path.join(video_dir_path, '{:06d}.jpg'.format(i))
-        assert os.path.exists(image_path), "image does not exists"
+        assert os.path.exists(image_path), image_path + " image does not exists"
         video.append(image_loader(image_path))
     return video
 
@@ -102,6 +103,9 @@ class VE8Dataset(data.Dataset):
         self.fps = fps
         self.ORIGINAL_FPS = 30
         self.need_audio = need_audio
+        self.norm_mean = -6.6268077
+        self.norm_std = 5.358466
+        self.audio_n_segments = 16
 
     def __getitem__(self, index):
         data_item = self.data[index]
@@ -109,13 +113,32 @@ class VE8Dataset(data.Dataset):
         frame_indices = data_item['frame_indices']
         snippets_frame_idx = self.temporal_transform(frame_indices)
         if self.need_audio:
-            timeseries_length = 4096
-            audio_path = data_item['audio']
-            feature = preprocess_audio(audio_path).T
-            k = timeseries_length // feature.shape[0] + 1
-            feature = np.tile(feature, reps=(k, 1))
-            audios = feature[:timeseries_length, :]
+            timeseries_length = 100*self.audio_n_segments
+            waveform, sr = torchaudio.load(data_item['audio'])
+            waveform = waveform - waveform.mean()
+            fbank = torchaudio.compliance.kaldi.fbank(waveform, 
+                                                htk_compat=True,
+                                                sample_frequency=sr,
+                                                use_energy=False,
+                                                window_type='hanning',
+                                                num_mel_bins=128,
+                                                dither=0.0,
+                                                frame_shift=10)
+            if fbank.shape[0]<=timeseries_length:
+                k = timeseries_length // fbank.shape[0] + 1
+                fbank = np.tile(fbank, reps=(k, 1))
+                audios = fbank[:timeseries_length, :]
+            else:
+                blk = int(fbank.shape[0]/self.audio_n_segments)
+                aud = []
+                for i in list(range(0,fbank.shape[0],blk))[:self.audio_n_segments]:
+                    ind = i+int(random.random()*(blk-100))
+                    aud.append(fbank[ind:ind+100])
+                audios = torch.cat(aud)
+            if audios.shape[0]!=timeseries_length:
+                print(audios.shape)
             audios = torch.FloatTensor(audios)
+            audios = (audios - self.norm_mean) / (self.norm_std * 2)
         else:
             audios = []
         snippets = []
@@ -149,12 +172,17 @@ def make_dataset(video_root_path, annotation_path, audio_root_path, subset, fps=
         if i % 100 == 0:
             print("Dataset loading [{}/{}]".format(i, len(video_names)))
         video_path = os.path.join(video_root_path, video_names[i])
+        if not os.path.exists(video_path):
+            print(video_path)
+            continue
         if need_audio:
             audio_path = os.path.join(audio_root_path, video_names[i] + '.mp3')
-            assert os.path.exists(audio_path), audio_path
+            if not os.path.exists(audio_path):
+                print(audio_path)
+                continue
         else:
             audio_path = None
-        assert os.path.exists(video_path), video_path
+        
         n_frames_file_path = os.path.join(video_path, 'n_frames')
         n_frames = int(load_value_file(n_frames_file_path))
         if n_frames <= 0:

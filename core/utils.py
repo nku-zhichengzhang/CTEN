@@ -71,14 +71,20 @@ def process_data_item(opt, data_item):
     visual, target, audio, visualization_item, video, n_frames = data_item
     target = target.cuda()
     visual = visual.cuda()
+    audio = audio.cuda()
     batch = visual.size(0)
     return visual, target, audio, visualization_item, batch, {'video':video, 'n_frames':n_frames}
 
 def run_model(opt, inputs, model, criterion, i=0, print_attention=False, period=30, return_attention=False):
     visual, target, audio = inputs
-    outputs,gamma = model(visual)
+    outputs, gamma = model([visual, audio])
     loss = criterion(outputs, target)
     return outputs,loss,gamma
+
+def run_model_inf(opt, inputs, model, i=0, print_attention=False, period=30, return_attention=False):
+    visual, _, audio = inputs
+    outputs, gamma = model([visual, audio])
+    return outputs,gamma
 
 def calculate_accuracy(outputs, targets):
     batch_size = targets.size(0)

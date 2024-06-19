@@ -11,7 +11,7 @@ def get_ve8(opt, subset, transforms):
                       spatial_transform,
                       temporal_transform,
                       target_transform,
-                      need_audio=False)
+                      need_audio=True)
 
 def get_training_set(opt, spatial_transform, temporal_transform, target_transform):
     if opt.dataset == 've8':
