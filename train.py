@@ -26,10 +26,10 @@ def train_epoch(epoch, data_loader, model, criterion, optimizer, opt, class_name
         gamma_thre=gamma_row_max.expand(gamma1.shape)
         high_index=gamma1<gamma_thre
         low_index=gamma1>gamma_thre
-        visual_erase1=batch_augment(video_item,high_index,opt,visual)
-        output2, loss2, gamma2 = run_model(opt, [visual_erase1, target, audio], model, criterion, i, print_attention=False)
-        visual_erase2=batch_augment2(video_item, low_index, opt, visual)
-        output3, loss3, gamma3 = run_model(opt, [visual_erase2, target, audio], model, criterion, i, print_attention=False)
+        visual_erase2=batch_augment(video_item,high_index,opt,visual)
+        output2, loss2, gamma2 = run_model(opt, [visual_erase2, target, audio], model, criterion, i, print_attention=False)
+        visual_erase3=batch_augment2(video_item, low_index, opt, visual)
+        output3, loss3, gamma3 = run_model(opt, [visual_erase3, target, audio], model, criterion, i, print_attention=False)
         loss=loss1/3.+loss2/3.+loss3/3.
         acc1 = calculate_accuracy(output1, target)
         acc2 = calculate_accuracy(output2,target)
