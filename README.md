@@ -43,7 +43,9 @@ $ bash run.sh
 
 The used datasets are provided in [Ekman-6](https://github.com/kittenish/Frame-Transformer-Network), [VideoEmotion-8](https://drive.google.com/drive/folders/0B5peJ1MHnIWGd3pFbzMyTG5BSGs?resourcekey=0-hZ1jo5t1hIauRpYhYIvWYA), and [CAER](https://caer-dataset.github.io/).
 
+## CKPT
 
+The trained checkpoint can be found [here](https://drive.google.com/file/d/1TemtuYmdj7q5nWZAK3Mc8WKBfqbgZjIU/view?usp=drive_link)
 
 ## References
 
